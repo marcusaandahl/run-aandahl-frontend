@@ -57,3 +57,11 @@ declare module '*.png' {
 }
 
 /* CUSTOM: ADD YOUR OWN HERE */
+
+declare module '*.svgr.svg' {
+  const ref: React.ForwardRefRenderFunction<
+    SVGSVGElement,
+    React.SVGAttributes<SVGSVGElement>
+  >;
+  export default ref;
+}

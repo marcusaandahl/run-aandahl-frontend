@@ -1,39 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
 
-interface AppProps {}
+import Landing from './Landing';
+import Shoes from './Shoes';
+import DarkModeSwitch from './DarkModeSwitch';
 
-function App({}: AppProps) {
-  // Create the count state.
-  const [count, setCount] = useState(0);
-  // Create the counter (+1 every second).
-  useEffect(() => {
-    const timer = setTimeout(() => setCount(count + 1), 1000);
-    return () => clearTimeout(timer);
-  }, [count, setCount]);
-  // Return the App component.
+function App() {
+  const [darkMode, setDarkMode] = useState(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <p>
-          Page has been open for <code>{count}</code> seconds.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </p>
-      </header>
+    <div className={`App ${darkMode ? 'dark' : ''}`}>
+      <div className="h-20 fixed z-10 min-w-full bg-opacity-60 backdrop-filter backdrop-blur-lg flex items-center justify-end px-8 shadow-sm dark:shadow-md">
+        <DarkModeSwitch setState={setDarkMode} />
+      </div>
+      <Routes>
+        <Route path="/shoes" element={<Shoes />} />
+        <Route path="/" element={<Landing />} />
+      </Routes>
     </div>
   );
 }
