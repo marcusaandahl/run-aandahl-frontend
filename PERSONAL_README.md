@@ -1,0 +1,1 @@
+firebase deploy --only hosting:running-336519
